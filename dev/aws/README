@@ -1,0 +1,23 @@
+Tips for running everything.
+
+Localstack
+To setup localstack, follow the instructions below
+    https://github.com/localstack/localstack
+
+A great way to set this up is using a searate python virtualenv with python 3.6
+Included in here is a source_locastack.sh file. This has all the environment variables
+necessary to run a simple localstack setup.
+
+Once localstack is running with `localstack start` (assuming the source_locastack file is sourced),
+just run the setup.sh file. This file might need to be run each time you start localstack.
+
+
+Next, run `node consumer.js`. This uses sqs-consumer to listen for records.
+
+To test you can run the following
+
+```
+aws --endpoint-url=http://localhost:4572 s3 cp test_file.txt s3://greenstand-bucket
+```
+
+This assumes you have a test_file.txt. That will print the message from the consumer.
